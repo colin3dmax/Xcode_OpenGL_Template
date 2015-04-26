@@ -1,0 +1,1 @@
+sudo cp -R OpenGL.xctemplate /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/Project\ Templates/Mac/Application/
