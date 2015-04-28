@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Ancestors</key>
+	<array>
+		<string>com.apple.dt.unit.objectiveCApplication</string>
+		<string>com.apple.dt.unit.macBase</string>
+	</array>
+	<key>Concrete</key>
+	<true/>
+	<key>Description</key>
+	<string>An example project that shows how an entire folder can be copied and added to the project.</string>
+	<key>Identifier</key>
+	<string>copyFolderProjectTemplateMacOSX</string>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Nodes</key>
+	<array>
+		<string>MyFolder</string>
+	</array>
+	<key>Definitions</key>
+	<dict>
+		<key>MyFolder</key>
+		<dict>
+			<key>Path</key>
+			<string>./MyFolder/</string>
+			<key>PathType</key>
+			<string>Group</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

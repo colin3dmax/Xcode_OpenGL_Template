@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Identifier</key>
+	<string>com.apple.dt.unit.opengl3</string>
+    <key>Ancestors</key>
+    <array>
+        <string>com.apple.dt.unit.base</string>
+        <string>com.apple.dt.unit.osxBase</string>
+    </array>
+	<key>Concrete</key>
+	<true/>
+	<key>Description</key>
+	<string>This template provides a starting point for OpenGL 3.x.</string>
+	<key>Targets</key>
+	<array>
+		<dict>
+			<key>ProductType</key>
+			<string>com.apple.product-type.tool</string>
+			<key>TargetIdentifier</key>
+			<string>com.apple.dt.commandLineToolTarget</string>
+			<key>BuildPhases</key>
+			<array>
+				<dict>
+					<key>Class</key>
+					<string>Sources</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Frameworks</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>CopyFiles</string>
+					<key>DstPath</key>
+					<string>/usr/share/man/man1/</string>
+					<key>DstSubfolderSpec</key>
+					<string>0</string>
+					<key>RunOnlyForDeploymentPostprocessing</key>
+					<string>YES</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>commandLineType</string>
+			<key>Name</key>
+			<string>Language:</string>
+			<key>Description</key>
+			<string>The primary implementation language for the command-line tool</string>
+			<key>Default</key>
+			<string>Objective-C</string>
+			<key>Type</key>
+			<string>popup</string>
+            <key>Values</key>
+            <array>
+                <string>Swift</string>
+                <string>Objective-C</string>
+                <string>C++</string>
+                <string>C</string>
+            </array>
+			<key>Units</key>
+			<dict>
+				<key>C</key>
+				<dict>
+                    <key>Targets</key>
+                    <array>
+                        <dict>
+                            <key>SharedSettings</key>
+                            <dict>
+                                <!-- No pch files
+                                <key>GCC_PREFIX_HEADER</key>
+                                <string>___PACKAGENAME___/Prefix.pch</string>
+                                <key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+                                <string>YES</string>
+                                 -->
+
+                            </dict>
+                            <key>Frameworks</key>
+							<array>
+								<string>libglut.3.10.0.dylib</string>
+								<string>OpenGL</string>
+							</array>
+                        </dict>
+                    </array>
+					<key>Nodes</key>
+					<array>
+						<string>main.c:comments</string>
+						<string>main.c:include</string>
+						<string>main.c:main:content</string>
+                        <!-- No pch files
+                        <string>Prefix.pch</string>
+                         -->
+					</array>
+					<key>Definitions</key>
+					<dict>
+						<key>main.c:include</key>
+						<string>#include &lt;stdio.h&gt;
+
+						</string>
+						<key>main.c:main:content</key>
+						<string>// insert code here...
+printf(&quot;Hello, World!\n&quot;);
+</string>
+					</dict>
+				</dict>
+				<key>C++</key>
+				<dict>
+                    <key>Targets</key>
+                    <array>
+                        <dict>
+                            <key>SharedSettings</key>
+                            <dict>
+                                <!-- No pch files
+                                <key>GCC_PREFIX_HEADER</key>
+                                <string>___PACKAGENAME___/Prefix.pch</string>
+                                <key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+                                <string>YES</string>
+                                 -->
+                                <key>FRAMEWORK_SEARCH_PATHS</key>
+				                <string>$(DEVELOPER_FRAMEWORKS_DIR) $(inherited) "/opt/local/lib/"</string>
+				                <key>HEADER_SEARCH_PATHS</key>
+				                <string>$(inherited) "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "/opt/local/include/"</string>
+				                <key>LIBRARY_SEARCH_PATHS</key>
+				                <string>"/opt/local/include/" "/opt/local/lib/" "/opt/local/lib"</string>
+
+                            </dict>
+                            <key>Frameworks</key>
+							<array>
+								<string>OpenGL</string>
+							</array>
+                        </dict>
+                    </array>
+					<key>Nodes</key>
+					<array>
+						<string>main.cpp:comments</string>
+						<string>main.cpp:include</string>
+						<string>main.cpp:main:content</string>
+						<string>libglut.3.10.0.dylib</string>
+                        <!-- No pch files
+                        <string>Prefix.pch</string>
+                         -->
+					</array>
+					<key>Definitions</key>
+					<dict>
+						<key>main.cpp:include</key>
+						<string>#include &lt;iostream&gt;
+#include &lt;OpenGL/OpenGL.h&gt;
+#include &lt;OpenGL/gl3.h&gt;
+#include &lt;GL/freeglut.h&gt;
+#pragma clang  diagnostic ignored &quot;-Wdeprecated-declarations&quot;
+void init()
+{
+    glClearColor(0.0,0.0, 1.0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+</string>
+						<key>main.cpp:main</key>
+						<string>
+int main(int argc,char * argv[]) {
+	glutInit(&amp;argc, argv);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_SINGLE);
+	glutInitContextVersion(3,1);
+    glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
+    glutInitWindowSize(250, 250);
+    glutCreateWindow("___PACKAGENAME___");
+    init();
+    glutReshapeFunc([](int w,int h){
+        glViewport(0, 0, w, h);
+        glLoadIdentity();
+        glOrtho(-300, 300, -300, 300, 1.0, -1.0);
+    });
+    glutDisplayFunc([](){
+    	//to do ...
+
+    });
+    glutMainLoop();
+    return 0;
+}
+</string>
+					</dict>
+				</dict>
+				<key>Objective-C</key>
+				<dict>
+                    <key>Targets</key>
+                    <array>
+                        <dict>
+                            <key>SharedSettings</key>
+                            <dict>
+                                <!-- No pch files
+                                <key>GCC_PREFIX_HEADER</key>
+                                <string>___PACKAGENAME___/Prefix.pch</string>
+                                <key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+                                <string>YES</string>
+                                 -->
+                            </dict>
+                            <key>Frameworks</key>
+							<array>
+								<string>OpenGL</string>
+							</array>
+                        </dict>
+                    </array>
+					<key>Nodes</key>
+					<array>
+						<string>main.m:comments</string>
+						<string>main.m:include</string>
+						<string>main.m:main:content</string>
+                        <!-- No pch files
+						<string>Prefix.pch:objC:importFoundation</string>
+                         -->
+					</array>
+					<key>Definitions</key>
+					<dict>
+						<key>main.m:include</key>
+						<string>#import &lt;Foundation/Foundation.h&gt;
+</string>
+						<key>main.m:main:content</key>
+						<string>@autoreleasepool {
+    // insert code here...
+    NSLog(@&quot;Hello, World!&quot;);
+}
+</string>
+					</dict>
+				</dict>
+				<key>Swift</key>
+				<dict>
+                    <key>Project</key>
+                    <dict>
+                        <key>Configurations</key>
+                        <dict>
+                            <key>Debug</key>
+                            <dict>
+                                <key>SWIFT_OPTIMIZATION_LEVEL</key>
+                                <string>-Onone</string>
+                            </dict>
+                        </dict>
+                    </dict>
+					<key>Nodes</key>
+					<array>
+						<string>main.swift:comments</string>
+						<string>main.swift:include</string>
+						<string>main.swift:main:content</string>
+					</array>
+					<key>Definitions</key>
+					<dict>
+						<key>main.swift:include</key>
+						<string>import Foundation
+</string>
+                        <key>main.swift:main</key>
+                        <dict>
+                            <key>Beginning</key>
+                            <string></string>
+                            <key>End</key>
+                            <string></string>
+                        </dict>
+						<key>main.swift:main:content</key>
+						<string>println(&quot;Hello, World!&quot;)
+</string>
+					</dict>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+	<key>Definitions</key>
+	<dict>
+		<key>*:main</key>
+		<dict>
+			<key>Beginning</key>
+			<string>int main(int argc, const char * argv[]) {</string>
+			<key>End</key>
+			<string>    return 0;
+}</string>
+			<key>Indent</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>

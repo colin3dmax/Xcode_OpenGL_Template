@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AllowedTypes</key>
+	<array>
+		<string>public.objective-c-source</string>
+		<string>public.objective-c-plus-plus-source</string>
+	</array>
+	<key>Description</key>
+	<string>An advanced File Template example.</string>
+	<key>Kind</key>
+	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
+	<key>MainTemplateFile</key>
+	<string>___FILEBASENAME___.m</string>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Default</key>
+			<string>DefaultText</string>
+			<key>Description</key>
+			<string>This is the description of the option.</string>
+			<key>Identifier</key>
+			<string>optionIdentifierForTextBox</string>
+			<key>Name</key>
+			<string>Please enter a string:</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Default</key>
+			<string>___VARIABLE_optionIdentifierForTextBox:identifier___</string>
+			<key>Description</key>
+			<string>This is the description of the option.</string>
+			<key>Identifier</key>
+			<string>optionIdentifierForStaticText</string>
+			<key>Name</key>
+			<string>The string you entered above as an identifier:</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>static</string>
+		</dict>
+	</array>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.macosx</string>
+	</array>
+	<key>SortOrder</key>
+	<integer>1</integer>
+</dict>
+</plist>
