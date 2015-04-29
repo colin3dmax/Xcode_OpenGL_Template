@@ -5,7 +5,7 @@
 	<key>Kind</key>
 	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
 	<key>Identifier</key>
-	<string>com.apple.dt.unit.opengl3</string>
+	<string>com.apple.dt.unit.opengl.glfw</string>
     <key>Ancestors</key>
     <array>
         <string>com.apple.dt.unit.base</string>
@@ -14,7 +14,7 @@
 	<key>Concrete</key>
 	<true/>
 	<key>Description</key>
-	<string>This template provides a starting point for OpenGL 3.x.</string>
+	<string>This template provides a starting point for OpenGL GLEW version.</string>
 	<key>Targets</key>
 	<array>
 		<dict>
@@ -84,7 +84,6 @@
                             </dict>
                             <key>Frameworks</key>
 							<array>
-								<string>libglut.a</string>
 								<string>OpenGL</string>
 							</array>
                              <!-- No pch files
@@ -135,18 +134,13 @@ printf(&quot;Hello, World!\n&quot;);
 				                <string>$(inherited) "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include" "/opt/local/include/"</string>
 				                <key>LIBRARY_SEARCH_PATHS</key>
 				                <string>"/opt/local/include/" "/opt/local/lib/" "/opt/local/lib"</string>
-
+                                <key>OTHER_LDFLAGS</key>
+                                <string>-ObjC -all_load -weak_library /opt/local/lib/libglfw.dylib</string>
                             </dict>
                             <key>Frameworks</key>
 							<array>
 								<string>OpenGL</string>
 							</array>
-                             <!-- No pch files
-                            <key>OtherFrameworks</key>
-                            <array>
-                                <string>/opt/local/lib/libglut.dylib</string>
-                            </array>
-                            -->
                         </dict>
                     </array>
 					<key>Nodes</key>
@@ -154,7 +148,6 @@ printf(&quot;Hello, World!\n&quot;);
 						<string>main.cpp:comments</string>
 						<string>main.cpp:include</string>
 						<string>main.cpp:main:content</string>
-						<string>libglut.a</string>
                         <!-- No pch files
                         <string>Prefix.pch</string>
                          -->
@@ -163,37 +156,43 @@ printf(&quot;Hello, World!\n&quot;);
 					<dict>
 						<key>main.cpp:include</key>
 						<string>#include &lt;iostream&gt;
-#include &lt;OpenGL/OpenGL.h&gt;
-#include &lt;OpenGL/gl3.h&gt;
-#include &lt;GL/freeglut.h&gt;
+#include &lt;GLFW/glfw3.h&gt;
 #pragma clang  diagnostic ignored &quot;-Wdeprecated-declarations&quot;
 void init()
 {
     glClearColor(0.0,0.0, 1.0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
+void display(){
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
 </string>
 						<key>main.cpp:main</key>
 						<string>
 int main(int argc,char * argv[]) {
-	glutInit(&amp;argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_SINGLE);
-	glutInitContextVersion(3,1);
-    glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
-    glutInitWindowSize(250, 250);
-    glutCreateWindow("___PACKAGENAME___");
-    init();
-    glutReshapeFunc([](int w,int h){
-        glViewport(0, 0, w, h);
-        glLoadIdentity();
-        glOrtho(-300, 300, -300, 300, 1.0, -1.0);
-    });
-    glutDisplayFunc([](){
-    	//to do ...
-
-    });
-    glutMainLoop();
+	GLFWwindow* window;
+    
+    if (!glfwInit()) {
+        return (EXIT_FAILURE);
+    }
+    window = glfwCreateWindow(250, 250, "___PACKAGENAME___", NULL, NULL);
+    if (!window) {
+        glfwTerminate();
+        return (EXIT_FAILURE);
+    }
+    glfwMakeContextCurrent(window);
+    while (!glfwWindowShouldClose(window)) {
+        display();
+        
+        glfwSwapBuffers(window);
+        
+        glfwPollEvents();
+    }
+    
+    glfwTerminate();
     return 0;
+
 }
 </string>
 					</dict>
