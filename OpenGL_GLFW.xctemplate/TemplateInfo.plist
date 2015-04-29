@@ -156,16 +156,16 @@ printf(&quot;Hello, World!\n&quot;);
 					<dict>
 						<key>main.cpp:include</key>
 						<string>#include &lt;iostream&gt;
+#include &lt;GL/glew.h&gt;
 #include &lt;GLFW/glfw3.h&gt;
-#pragma clang  diagnostic ignored &quot;-Wdeprecated-declarations&quot;
 void init()
 {
     glClearColor(0.0,0.0, 1.0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 void display(){
-    glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
+
 }
 </string>
 						<key>main.cpp:main</key>
@@ -184,9 +184,7 @@ int main(int argc,char * argv[]) {
     glfwMakeContextCurrent(window);
     while (!glfwWindowShouldClose(window)) {
         display();
-        
         glfwSwapBuffers(window);
-        
         glfwPollEvents();
     }
     
